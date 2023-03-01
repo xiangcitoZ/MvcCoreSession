@@ -98,5 +98,36 @@ namespace MvcCoreSession.Controllers
             return View();
         }
 
+        public IActionResult SessionPersonaJson(string accion)
+        {
+            if (accion != null)
+            {
+                if (accion.ToLower() == "almacenar")
+                {
+                    Persona persona = new Persona();
+                    persona.Nombre = "Alumno";
+                    persona.Email = "alumno@gmail.com";
+                    persona.Edad = 25;
+                    string jsonPersona =
+                        HelperJsonSession.SerializeObject<Persona>
+                        (persona);
+                    HttpContext.Session.SetString("PERSONA", jsonPersona);
+                    ViewData["MENSAJE"] = "Datos almacenados";
+                }
+                else if (accion.ToLower() == "mostrar")
+                {
+                    //EXTRAEMOS EL OBJETO PERSONA DESDE EL STRING
+                    string jsonPersona =
+                        HttpContext.Session.GetString("PERSONA");
+                    Persona persona =
+                        HelperJsonSession.DeserializeObject<Persona>
+                        (jsonPersona);
+                    ViewData["PERSONA"] = persona;
+                }
+            }
+            return View();
+        }
+
+
     }
 }

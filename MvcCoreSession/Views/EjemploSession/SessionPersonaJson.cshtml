@@ -2,20 +2,18 @@
     Persona persona = ViewData["PERSONA"] as Persona;
 }
 
-<h1>Session Persona</h1>
+<h1 style="color:blue">Session Persona JSON</h1>
 
 <a asp-controller="EjemploSession"
-    asp-action="SessionPersona"
-    asp-route-accion="almacenar">
-    Almacenar persona
-</a> | 
+   asp-action="SessionPersonaJson"
+   asp-route-accion="almacenar">
+    Almacenar persona JSON
+</a> |
 <a asp-controller="EjemploSession"
-    asp-action="SessionPersona"
-    asp-route-accion="mostrar">
-    Mostrar persona
+   asp-action="SessionPersonaJson"
+   asp-route-accion="mostrar">
+    Mostrar persona JSON
 </a>
-
-
 @if (persona != null)
 {
     <h1 style="color:blue">
@@ -25,6 +23,3 @@
         Edad: @persona.Edad
     </h2>
 }
-
-
-
